@@ -1,0 +1,27 @@
+.saved, .saving {
+    background: white;
+    padding: 10px 15px;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #3e3e3c;
+}
+
+.saving {
+    background: #fff3cd;
+}
+
+.save-icon {
+    animation: spin 1s linear infinite;
+}
+
+.saved .save-icon {
+    animation: none;
+}
+
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}

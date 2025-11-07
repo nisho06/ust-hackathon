@@ -1,0 +1,46 @@
+<template>
+    <lightning-card title="Draft Recovery Dashboard" icon-name="custom:custom63">
+        <div class="slds-p-around_medium">
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Loading drafts..."></lightning-spinner>
+            </template>
+            
+            <template if:true={hasDrafts}>
+                <div class="slds-m-bottom_small">
+                    <p class="slds-text-body_regular">
+                        You have {drafts.length} unsaved draft(s). Restore your work or delete them below.
+                    </p>
+                </div>
+                <lightning-datatable
+                    key-field="id"
+                    data={drafts}
+                    columns={columns}
+                    onrowaction={handleRowAction}
+                    hide-checkbox-column>
+                </lightning-datatable>
+            </template>
+            
+            <template if:false={hasDrafts}>
+                <template if:false={isLoading}>
+                    <div class="slds-text-align_center slds-p-around_large">
+                        <lightning-icon 
+                            icon-name="utility:check" 
+                            size="large"
+                            class="slds-m-bottom_small">
+                        </lightning-icon>
+                        <p class="slds-text-heading_small">No Drafts Found</p>
+                        <p class="slds-text-body_small slds-m-top_small">
+                            All your work is saved!
+                        </p>
+                    </div>
+                </template>
+            </template>
+            
+            <template if:true={error}>
+                <div class="slds-text-color_error">
+                    Error loading drafts: {error}
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>
