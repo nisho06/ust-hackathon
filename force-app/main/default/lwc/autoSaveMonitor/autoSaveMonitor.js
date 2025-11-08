@@ -83,15 +83,13 @@ export default class AutoSaveMonitor extends LightningElement {
         document.addEventListener('change', (event) => {
             console.log("Event triggered and capturing it.")
             console.log("Event:- ", event);
-            console.log("Event target label:- ", event.target.label)
-            if (event.target && event.target.name) {
+            console.log("Event label:- ", event.target.label);
+            console.log("Event target value:- ", event.detail.value);
+            
+            // This has to be changed in a way to capture the actual form component labels. This is been done this way to make sure the flow is working correctly.
+            this.formData["Subject"] = event.detail.value;
 
-                console.log("Event target Name:- ", event.target.name);
-                console.log("Event target value:- ", event.target.value);
-                // Store what changed
-                this.formData[event.target.name] = event.target.value;
-                this.hasUnsavedChanges = true;
-            }
+            this.hasUnsavedChanges = true;
         });
     }
     
